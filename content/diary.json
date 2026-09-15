@@ -1,0 +1,48 @@
+{
+  "entry": {
+    "date": "MON SEP 15 2025",
+    "time": "08:47 PM",
+    "paragraphs": [
+      "Hoy fue un día pesado pero bonito. Entrené, escribí un poco, escuché ideas viejas y me di cuenta de cuánto he crecido. A veces me siento agotada, pero sigo aquí, y eso ya es un logro. Quiero recordarme que todo esto también es parte del proceso, que está bien sentirse rara, que la disciplina también es amor propio. Estoy construyendo la vida que siempre soñé y no es fácil, pero qué chimba poder hacerla a mi manera. ♡",
+      "Mañana: café con el equipo de marketing, clase, y seguir con la canción nueva. 1% better. Siempre."
+    ],
+    "sign": "— Haad",
+    "photo": "assets/pages/diary/polaroid.jpg"
+  },
+  "references": [
+    "assets/pages/diary/ref-tattoo.png",
+    "assets/pages/diary/ref-eye.png",
+    "assets/pages/diary/ref-rabbit.png",
+    "assets/pages/diary/ref-text.png"
+  ],
+  "random": [
+    "assets/pages/diary/rand-cat.png",
+    "assets/pages/diary/rand-text.png",
+    "assets/pages/diary/rand-city.png",
+    "assets/pages/diary/rand-lips.jpg"
+  ],
+  "obsession": {
+    "name": "Francesca Woodman",
+    "role": "(Fotógrafa)",
+    "desc": "La fragilidad metafórica y escenarios."
+  },
+  "watched": [
+    { "title": "Drive", "year": "2011" },
+    { "title": "The Idol", "year": "2023" },
+    { "title": "Lost Highway", "year": "1997" },
+    { "title": "Babygirl", "year": "2024" }
+  ],
+  "songs": [
+    "Haad – Special Edition",
+    "The Weeknd – What You Need",
+    "Daft Punk – Get Lucky",
+    "Feid – Que Vuelta Vox",
+    "Robin Thicke – Blurred Lines ft. T.I., Pharrell"
+  ],
+  "quotes": [
+    "A beautiful woman is a dangerous thing.",
+    "Art should comfort the disturbed and disturb the comfortable.",
+    "Same girl... different universe."
+  ],
+  "note": "No soy Hey Haad"
+}

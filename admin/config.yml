@@ -1,0 +1,66 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/pages/diary"
+public_folder: "assets/pages/diary"
+
+locale: "es"
+
+collections:
+  - name: "diary"
+    label: "Diary"
+    files:
+      - file: "content/diary.json"
+        label: "Contenido del Diary"
+        name: "diary"
+        fields:
+          - label: "Entrada de hoy"
+            name: "entry"
+            widget: "object"
+            fields:
+              - { label: "Fecha", name: "date", widget: "string" }
+              - { label: "Hora", name: "time", widget: "string" }
+              - label: "Párrafos"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "Párrafo", name: "value", widget: "text" }
+              - { label: "Firma", name: "sign", widget: "string" }
+              - { label: "Foto (polaroid)", name: "photo", widget: "image" }
+
+          - label: "References (4 fotos)"
+            name: "references"
+            widget: "list"
+            field: { label: "Imagen", name: "value", widget: "image" }
+
+          - label: "Random (4 fotos)"
+            name: "random"
+            widget: "list"
+            field: { label: "Imagen", name: "value", widget: "image" }
+
+          - label: "Current Obsession"
+            name: "obsession"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "name", widget: "string" }
+              - { label: "Rol", name: "role", widget: "string" }
+              - { label: "Descripción", name: "desc", widget: "text" }
+
+          - label: "Watched Lately (4 películas)"
+            name: "watched"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Año", name: "year", widget: "string" }
+
+          - label: "Songs on Repeat"
+            name: "songs"
+            widget: "list"
+            field: { label: "Canción", name: "value", widget: "string" }
+
+          - label: "Quotes"
+            name: "quotes"
+            widget: "list"
+            field: { label: "Quote", name: "value", widget: "string" }
+
+          - { label: "Note.txt", name: "note", widget: "string" }
