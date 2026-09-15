@@ -88,6 +88,82 @@
     });
   });
 
+  // Haad Files: retro desktop audio window
+  const cdIcon = document.getElementById('cdIcon');
+  const audioWindow = document.getElementById('audioWindow');
+  const audioMinBtn = document.getElementById('audioMinBtn');
+  const audioCloseBtn = document.getElementById('audioCloseBtn');
+  const audioTaskbarBtn = document.getElementById('audioTaskbarBtn');
+  const audioPlayBtn = document.getElementById('audioPlayBtn');
+  const audioNowTitle = document.getElementById('audioNowTitle');
+  const audioWaveform = document.getElementById('audioWaveform');
+  const audioFilelist = document.getElementById('audioFilelist');
+  const retroClock = document.getElementById('retroClock');
+
+  if (cdIcon && audioWindow) {
+    // Build fake waveform bars once
+    for (let i = 0; i < 40; i++) {
+      const bar = document.createElement('span');
+      bar.className = 'bar';
+      bar.style.height = (20 + Math.random() * 80) + '%';
+      bar.style.animationDelay = (Math.random() * 0.9) + 's';
+      audioWaveform.appendChild(bar);
+    }
+
+    let isPlaying = false;
+
+    function openAudioWindow() {
+      audioWindow.hidden = false;
+      audioTaskbarBtn.hidden = false;
+    }
+    function closeAudioWindow() {
+      audioWindow.hidden = true;
+      audioTaskbarBtn.hidden = true;
+      isPlaying = false;
+      audioPlayBtn.textContent = '▶';
+      audioWaveform.classList.remove('is-playing');
+    }
+    function minimizeAudioWindow() {
+      audioWindow.hidden = true;
+    }
+    function toggleAudioWindow() {
+      audioWindow.hidden ? openAudioWindow() : minimizeAudioWindow();
+    }
+
+    cdIcon.addEventListener('click', openAudioWindow);
+    audioCloseBtn.addEventListener('click', closeAudioWindow);
+    audioMinBtn.addEventListener('click', minimizeAudioWindow);
+    audioTaskbarBtn.addEventListener('click', toggleAudioWindow);
+
+    audioPlayBtn.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      audioPlayBtn.textContent = isPlaying ? '⏸' : '▶';
+      audioWaveform.classList.toggle('is-playing', isPlaying);
+    });
+
+    audioFilelist.querySelectorAll('.audio-file').forEach(file => {
+      file.addEventListener('click', () => {
+        audioFilelist.querySelectorAll('.audio-file').forEach(f => f.classList.remove('is-playing'));
+        file.classList.add('is-playing');
+        audioNowTitle.textContent = file.dataset.title;
+        isPlaying = true;
+        audioPlayBtn.textContent = '⏸';
+        audioWaveform.classList.add('is-playing');
+      });
+    });
+  }
+
+  if (retroClock) {
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      retroClock.textContent = h + ':' + m;
+    }
+    updateClock();
+    setInterval(updateClock, 15000);
+  }
+
   // Hash-based routing on load / back-forward
   window.addEventListener('hashchange', () => showView(idFromHash(), { silent: true }));
 
