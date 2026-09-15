@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cormorant+Garamond:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cormorant+Garamond:wght@400;500;600&family=Space+Mono:wght@400;700&family=Syne:wght@600;700&display=swap');
 
 :root {
   --black: #000000;
@@ -11,6 +11,7 @@
   --nav-h: 90px;
   --font-script: 'Beau Rivage', cursive;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-nav: 'Syne', sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -57,8 +58,10 @@ img { display: block; max-width: 100%; }
 .logo { justify-self: center; }
 .nav-right { justify-self: end; }
 .nav-link {
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--white);
   opacity: 0.75;
@@ -189,8 +192,10 @@ img { display: block; max-width: 100%; }
   opacity: 0.8;
 }
 .scroll-cue span {
-  font-size: 0.7rem;
-  letter-spacing: 0.32em;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--purple-soft);
 }
@@ -305,10 +310,13 @@ img { display: block; max-width: 100%; }
 
 .section-back {
   position: absolute;
+  z-index: 50;
   top: calc(var(--nav-h) + 4px);
   left: clamp(20px, 4vw, 56px);
-  font-size: 0.7rem;
-  letter-spacing: 0.24em;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.65;
   transition: opacity .25s ease;
@@ -893,7 +901,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 760px) {
   :root { --nav-h: 76px; }
   .nav-left { gap: 14px; }
-  .nav-link { font-size: 0.6rem; letter-spacing: 0.2em; }
+  .nav-link { font-size: 0.6rem; letter-spacing: 0.12em; }
   .grillz-wrap { width: 82vw; }
 
   #view-world { overflow-y: auto; }
