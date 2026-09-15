@@ -780,6 +780,12 @@ img { display: block; max-width: 100%; }
 }
 .win-title-date { opacity: 0.7; font-size: 0.62rem; }
 
+.win--pulse { animation: winPulse 1s ease; }
+@keyframes winPulse {
+  0% { box-shadow: 2px 2px 0 rgba(44,22,64,0.3), 0 0 0 3px rgba(90,52,128,0.6); }
+  100% { box-shadow: 2px 2px 0 rgba(44,22,64,0.3), 0 0 0 3px rgba(90,52,128,0); }
+}
+
 .diary-titlebar {
   margin: 0 0 0;
   display: flex;

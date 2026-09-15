@@ -80,11 +80,18 @@
     });
   }
 
-  // Diary: decorative menu highlight
+  // Diary: menu jumps to the matching panel and highlights it
   document.querySelectorAll('.diary-menu li').forEach(item => {
     item.addEventListener('click', () => {
       document.querySelectorAll('.diary-menu li').forEach(li => li.classList.remove('active'));
       item.classList.add('active');
+
+      const target = document.getElementById(item.dataset.target);
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.classList.remove('win--pulse');
+      void target.offsetWidth;
+      target.classList.add('win--pulse');
     });
   });
 

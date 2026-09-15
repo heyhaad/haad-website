@@ -230,13 +230,12 @@
             <div class="win">
               <div class="win-title">// menu</div>
               <ul class="diary-menu">
-                <li class="active">&#128193; today</li>
-                <li>&#128193; thoughts</li>
-                <li>&#128193; references</li>
-                <li>&#128193; films</li>
-                <li>&#128193; music</li>
-                <li>&#128193; obsessions</li>
-                <li>&#128193; random</li>
+                <li class="active" data-target="panel-today">&#128193; today</li>
+                <li data-target="panel-references">&#128193; references</li>
+                <li data-target="panel-watched">&#128193; films</li>
+                <li data-target="panel-songs">&#128193; music</li>
+                <li data-target="panel-obsession">&#128193; obsessions</li>
+                <li data-target="panel-random">&#128193; random</li>
               </ul>
             </div>
 
@@ -268,7 +267,7 @@
           </aside>
 
           <div class="diary-col diary-col--main">
-            <div class="win">
+            <div class="win" id="panel-today">
               <div class="win-title">// today's entry <span class="win-title-date" id="entryDate">MON SEP 15 2025 &middot; 08:47 PM</span></div>
               <div class="diary-entry">
                 <img src="assets/pages/diary/polaroid.jpg" alt="" class="diary-polaroid" id="entryPhoto">
@@ -283,7 +282,7 @@
               </div>
             </div>
 
-            <div class="win">
+            <div class="win" id="panel-references">
               <div class="win-title">// references</div>
               <div class="tile-grid" id="referencesGrid">
                 <img src="assets/pages/diary/ref-tattoo.png" alt="">
@@ -293,7 +292,7 @@
               </div>
             </div>
 
-            <div class="win">
+            <div class="win" id="panel-random">
               <div class="win-title">// random</div>
               <div class="tile-grid" id="randomGrid">
                 <img src="assets/pages/diary/rand-cat.png" alt="">
@@ -305,7 +304,7 @@
           </div>
 
           <aside class="diary-col diary-col--right">
-            <div class="win">
+            <div class="win" id="panel-obsession">
               <div class="win-title">// current obsession</div>
               <div class="obsession">
                 <div class="obsession-title" id="obsessionName">Francesca Woodman</div>
@@ -314,7 +313,7 @@
               </div>
             </div>
 
-            <div class="win">
+            <div class="win" id="panel-watched">
               <div class="win-title">// watched lately</div>
               <div class="watched-grid" id="watchedGrid">
                 <div class="watched-tile"><span>Drive</span><small>2011</small></div>
@@ -324,7 +323,7 @@
               </div>
             </div>
 
-            <div class="win">
+            <div class="win" id="panel-songs">
               <div class="win-title">// songs on repeat</div>
               <ol class="songs-list" id="songsList">
                 <li>Haad &ndash; Special Edition <span>&#9825;</span></li>
