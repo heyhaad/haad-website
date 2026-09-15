@@ -199,16 +199,6 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
   color: var(--purple-soft);
 }
-.scroll-cue .arrow {
-  margin-top: 10px;
-  font-size: 1.1rem;
-  color: var(--purple-soft);
-  animation: bob 2.4s ease-in-out infinite;
-}
-@keyframes bob {
-  0%, 100% { transform: translateY(0); opacity: .7; }
-  50% { transform: translateY(8px); opacity: 1; }
-}
 
 /* ---------- Transition overlay (plain black, no color) ---------- */
 .portal-flash {
