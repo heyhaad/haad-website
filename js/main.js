@@ -100,6 +100,8 @@
   const audioFilelist = document.getElementById('audioFilelist');
   const retroClock = document.getElementById('retroClock');
 
+  const scIframe = document.getElementById('scPlayer');
+
   if (cdIcon && audioWindow) {
     // Build fake waveform bars once
     for (let i = 0; i < 40; i++) {
@@ -110,7 +112,34 @@
       audioWaveform.appendChild(bar);
     }
 
-    let isPlaying = false;
+    let scWidget = null;
+    let scReady = false;
+    let isPlayingNow = false;
+
+    function setPlayingUI(playing) {
+      isPlayingNow = playing;
+      audioPlayBtn.textContent = playing ? '⏸' : '▶';
+      audioWaveform.classList.toggle('is-playing', playing);
+    }
+
+    function selectFile(file, { autoplay } = {}) {
+      audioFilelist.querySelectorAll('.audio-file').forEach(f => f.classList.remove('is-playing'));
+      file.classList.add('is-playing');
+      audioNowTitle.textContent = file.dataset.title;
+      if (scReady && file.dataset.sc) {
+        scWidget.load(file.dataset.sc, { auto_play: !!autoplay, show_artwork: false });
+      }
+    }
+
+    if (window.SC && scIframe) {
+      scWidget = SC.Widget(scIframe);
+      scWidget.bind(SC.Widget.Events.READY, () => {
+        scReady = true;
+      });
+      scWidget.bind(SC.Widget.Events.PLAY, () => setPlayingUI(true));
+      scWidget.bind(SC.Widget.Events.PAUSE, () => setPlayingUI(false));
+      scWidget.bind(SC.Widget.Events.FINISH, () => setPlayingUI(false));
+    }
 
     function openAudioWindow() {
       audioWindow.hidden = false;
@@ -119,9 +148,8 @@
     function closeAudioWindow() {
       audioWindow.hidden = true;
       audioTaskbarBtn.hidden = true;
-      isPlaying = false;
-      audioPlayBtn.textContent = '▶';
-      audioWaveform.classList.remove('is-playing');
+      if (scReady) scWidget.pause();
+      setPlayingUI(false);
     }
     function minimizeAudioWindow() {
       audioWindow.hidden = true;
@@ -136,20 +164,12 @@
     audioTaskbarBtn.addEventListener('click', toggleAudioWindow);
 
     audioPlayBtn.addEventListener('click', () => {
-      isPlaying = !isPlaying;
-      audioPlayBtn.textContent = isPlaying ? '⏸' : '▶';
-      audioWaveform.classList.toggle('is-playing', isPlaying);
+      if (!scReady) return;
+      isPlayingNow ? scWidget.pause() : scWidget.play();
     });
 
     audioFilelist.querySelectorAll('.audio-file').forEach(file => {
-      file.addEventListener('click', () => {
-        audioFilelist.querySelectorAll('.audio-file').forEach(f => f.classList.remove('is-playing'));
-        file.classList.add('is-playing');
-        audioNowTitle.textContent = file.dataset.title;
-        isPlaying = true;
-        audioPlayBtn.textContent = '⏸';
-        audioWaveform.classList.add('is-playing');
-      });
+      file.addEventListener('click', () => selectFile(file, { autoplay: true }));
     });
   }
 

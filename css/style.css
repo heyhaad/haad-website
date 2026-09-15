@@ -585,6 +585,15 @@ img { display: block; max-width: 100%; }
 }
 .retro-clock { margin-left: auto; font-size: 0.7rem; padding: 5px 10px; border: 1px solid #8a8a92; }
 
+.sc-hidden-player {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  border: 0;
+}
+
 /* ---------- Behind The Art: video collage ---------- */
 .video-collage {
   display: grid;

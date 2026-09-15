@@ -106,42 +106,38 @@
             </div>
 
             <ul class="audio-filelist" id="audioFilelist">
-              <li class="audio-file is-playing" tabindex="0" data-title="HAAD - Doble Intencion_v2.wav" data-size="4.1 MB">
+              <li class="audio-file is-playing" tabindex="0" data-title="HAAD - Doble Intencion_v2.wav" data-size="4.1 MB" data-sc="https://soundcloud.com/heyhaad-music/doble-intencion">
                 <span class="audio-file-name">HAAD - Doble Intencion_v2.wav</span>
                 <span class="audio-file-size">4.1 MB</span>
               </li>
-              <li class="audio-file" tabindex="0" data-title="HAAD - Kitty Kitty_visualizer_final.mp3" data-size="3.4 MB">
+              <li class="audio-file" tabindex="0" data-title="HAAD - Kitty Kitty_visualizer_final.mp3" data-size="3.4 MB" data-sc="https://soundcloud.com/heyhaad-music/kitty-kitty">
                 <span class="audio-file-name">HAAD - Kitty Kitty_visualizer_final.mp3</span>
                 <span class="audio-file-size">3.4 MB</span>
               </li>
-              <li class="audio-file" tabindex="0" data-title="HAAD - 3D_master.wav" data-size="5.8 MB">
+              <li class="audio-file" tabindex="0" data-title="HAAD - 3D_master.wav" data-size="5.8 MB" data-sc="https://soundcloud.com/heyhaad-music/3d">
                 <span class="audio-file-name">HAAD - 3D_master.wav</span>
                 <span class="audio-file-size">5.8 MB</span>
               </li>
-              <li class="audio-file" tabindex="0" data-title="HAAD - Horny_mix2_FINAL.mp3" data-size="3.9 MB">
-                <span class="audio-file-name">HAAD - Horny_mix2_FINAL.mp3</span>
-                <span class="audio-file-size">3.9 MB</span>
-              </li>
-              <li class="audio-file" tabindex="0" data-title="HAAD - OVO_v4.wav" data-size="4.6 MB">
-                <span class="audio-file-name">HAAD - OVO_v4.wav</span>
-                <span class="audio-file-size">4.6 MB</span>
-              </li>
-              <li class="audio-file" tabindex="0" data-title="HAAD - Special Edition_demo.mp3" data-size="3.1 MB">
-                <span class="audio-file-name">HAAD - Special Edition_demo.mp3</span>
-                <span class="audio-file-size">3.1 MB</span>
-              </li>
-              <li class="audio-file" tabindex="0" data-title="HAAD - Pegalo_master_ok.wav" data-size="5.0 MB">
+              <li class="audio-file" tabindex="0" data-title="HAAD - Pegalo_master_ok.wav" data-size="5.0 MB" data-sc="https://soundcloud.com/heyhaad-music/pegalo">
                 <span class="audio-file-name">HAAD - Pegalo_master_ok.wav</span>
                 <span class="audio-file-size">5.0 MB</span>
               </li>
-              <li class="audio-file" tabindex="0" data-title="HAAD - TABU_final(1).mp3" data-size="4.4 MB">
-                <span class="audio-file-name">HAAD - TABU_final(1).mp3</span>
-                <span class="audio-file-size">4.4 MB</span>
+              <li class="audio-file" tabindex="0" data-title="HAAD - Psicologia_demo.mp3" data-size="3.6 MB" data-sc="https://soundcloud.com/heyhaad-music/psicologia">
+                <span class="audio-file-name">HAAD - Psicologia_demo.mp3</span>
+                <span class="audio-file-size">3.6 MB</span>
+              </li>
+              <li class="audio-file" tabindex="0" data-title="HAAD - Special Edition_v3.wav" data-size="4.8 MB" data-sc="https://soundcloud.com/heyhaad-music/special-edition">
+                <span class="audio-file-name">HAAD - Special Edition_v3.wav</span>
+                <span class="audio-file-size">4.8 MB</span>
+              </li>
+              <li class="audio-file" tabindex="0" data-title="HAAD - Codigos_final(1).mp3" data-size="4.2 MB" data-sc="https://soundcloud.com/heyhaad-music/codigos">
+                <span class="audio-file-name">HAAD - Codigos_final(1).mp3</span>
+                <span class="audio-file-size">4.2 MB</span>
               </li>
             </ul>
           </div>
 
-          <div class="retro-statusbar"><span id="audioFileCount">8 archivos</span></div>
+          <div class="retro-statusbar"><span id="audioFileCount">7 archivos</span></div>
         </div>
       </div>
 
@@ -150,6 +146,10 @@
         <button class="retro-taskbar-item" id="audioTaskbarBtn" type="button" hidden>&#128191; Archivos HAAD</button>
         <span class="retro-clock" id="retroClock">00:00</span>
       </div>
+
+      <iframe id="scPlayer" class="sc-hidden-player" title="HAAD SoundCloud player"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/heyhaad-music/doble-intencion&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false"
+        frameborder="no" allow="autoplay"></iframe>
     </section>
 
     <section id="section-live" class="view section-view section-view--image">
@@ -376,6 +376,7 @@
 
   <div class="portal-flash" id="portalFlash"></div>
 
+  <script src="https://w.soundcloud.com/player/api.js"></script>
   <script src="js/main.js"></script>
   <script src="js/diary-loader.js"></script>
   <script>
