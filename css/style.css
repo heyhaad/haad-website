@@ -794,7 +794,7 @@ img { display: block; max-width: 100%; }
   .yt-subscribe { margin-top: 12px; }
   .yt-grid { grid-template-columns: repeat(2, 1fr); gap: 14px 10px; }
   .video-collage { grid-template-columns: repeat(2, 1fr); }
-  .pinned { min-width: 76px; }
+  .pinned { min-width: 76px; left: var(--mx, var(--x)); top: var(--my, var(--y)); }
   .pinned:has(.note-slot--poem) { width: 78% !important; left: 50% !important; transform: translateX(-50%) rotate(var(--r)); }
   .note-slot--poem { font-size: 0.92rem; padding: 20px 18px; }
 }
