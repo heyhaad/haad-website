@@ -321,6 +321,8 @@ img { display: block; max-width: 100%; }
   text-align: center;
   filter: drop-shadow(0 0 16px rgba(176,38,255,0.3));
 }
+.section-title--huge { font-size: clamp(3.4rem, 11vw, 7.5rem); margin: 0; }
+.section-view--center { justify-content: center; }
 
 .section-copy {
   max-width: 560px;
