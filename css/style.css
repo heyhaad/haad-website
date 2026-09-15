@@ -259,6 +259,10 @@ img { display: block; max-width: 100%; }
   from { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
   to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
+@keyframes stickerInGrid {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
 @keyframes floaty {
   0%, 100% { margin-top: 0px; }
   50% { margin-top: -14px; }
@@ -783,7 +787,27 @@ img { display: block; max-width: 100%; }
   .nav-left { gap: 14px; }
   .nav-link { font-size: 0.6rem; letter-spacing: 0.2em; }
   .grillz-wrap { width: 82vw; }
-  .sticker { left: var(--mx, var(--x)); top: var(--my, var(--y)); width: calc(var(--size) * 0.62); }
+
+  #view-world { overflow-y: auto; }
+  .world-field {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 8px;
+    align-content: start;
+    justify-items: center;
+    height: auto;
+    min-height: 100%;
+    padding: calc(var(--nav-h) + 28px) 16px 40px;
+  }
+  .sticker {
+    position: static;
+    left: auto; top: auto;
+    width: min(var(--size), 38vw) !important;
+    transform: none;
+    animation: stickerInGrid .8s ease forwards var(--in-delay, 0s);
+  }
+  .sticker:hover, .sticker:focus-visible { transform: scale(1.06); }
+
   .section-copy { font-size: 0.95rem; }
   .section-slot { width: 42vw; height: 42vw; max-width: 160px; max-height: 160px; }
   .diary-grid { grid-template-columns: 1fr; }
@@ -794,8 +818,22 @@ img { display: block; max-width: 100%; }
   .yt-subscribe { margin-top: 12px; }
   .yt-grid { grid-template-columns: repeat(2, 1fr); gap: 14px 10px; }
   .video-collage { grid-template-columns: repeat(2, 1fr); }
-  .pinned { min-width: 76px; left: var(--mx, var(--x)); top: var(--my, var(--y)); }
-  .pinned:has(.note-slot--poem) { width: 78% !important; left: 50% !important; transform: translateX(-50%) rotate(var(--r)); }
+  .wall-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: calc(var(--nav-h) + 28px) 20px 50px;
+    min-height: auto !important;
+  }
+  .pinned {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 84% !important;
+    max-width: 320px;
+    transform: none !important;
+  }
   .note-slot--poem { font-size: 0.92rem; padding: 20px 18px; }
 }
 
