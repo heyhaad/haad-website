@@ -10,15 +10,15 @@
     "photo": "assets/pages/diary/polaroid.jpg"
   },
   "references": [
-    "assets/pages/diary/ref-tattoo.png",
-    "assets/pages/diary/ref-eye.png",
-    "assets/pages/diary/ref-rabbit.png",
-    "assets/pages/diary/ref-text.png"
+    "assets/pages/diary/ref-tattoo.jpg",
+    "assets/pages/diary/ref-eye.jpg",
+    "assets/pages/diary/ref-rabbit.jpg",
+    "assets/pages/diary/ref-text.jpg"
   ],
   "random": [
-    "assets/pages/diary/rand-cat.png",
-    "assets/pages/diary/rand-text.png",
-    "assets/pages/diary/rand-city.png",
+    "assets/pages/diary/rand-cat.jpg",
+    "assets/pages/diary/rand-text.jpg",
+    "assets/pages/diary/rand-city.jpg",
     "assets/pages/diary/rand-lips.jpg"
   ],
   "obsession": {
