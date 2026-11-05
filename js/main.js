@@ -71,30 +71,53 @@
   });
 
   // Grillz open transition: dissolve to open mouth, then dive forward/down into it, fading to black
-  function enterWorld() {
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  // Resolves once every image in `root` has loaded, or after `timeout` ms on slow connections
+  function imagesReady(root, timeout) {
+    const pending = [...root.querySelectorAll('img')]
+      .filter(i => i.getAttribute('src') && !(i.complete && i.naturalWidth > 0));
+    if (!pending.length) return Promise.resolve();
+    const loaded = Promise.all(pending.map(i => new Promise(res => {
+      i.addEventListener('load', res, { once: true });
+      i.addEventListener('error', res, { once: true });
+    })));
+    return Promise.race([loaded, sleep(timeout)]);
+  }
+
+  let entering = false;
+
+  async function enterWorld() {
+    if (entering) return;
+    entering = true;
+
     const DISSOLVE = 1000;
     const FADE_IN = 1100;
     const FADE_OUT = 600;
+    const homeView = document.getElementById('view-home');
+    const worldView = document.getElementById('view-world');
 
-    hydrate(document.getElementById('view-home'));
-    hydrate(document.getElementById('view-world'));
+    hydrate(homeView);
+    hydrate(worldView);
+    await imagesReady(homeView, 2500);
+
     grillzTrigger.classList.add('opening');
+    await sleep(DISSOLVE);
 
-    setTimeout(() => {
-      grillzTrigger.classList.add('sinking');
-      portalFlash.classList.add('grow');
-    }, DISSOLVE);
+    grillzTrigger.classList.add('sinking');
+    portalFlash.classList.add('grow');
+    const worldReady = imagesReady(worldView, 4000);
+    await sleep(FADE_IN);
+    await worldReady;
 
-    setTimeout(() => {
-      showView('world', { silent: false });
-      portalFlash.classList.remove('grow');
-      portalFlash.classList.add('shrink');
-    }, DISSOLVE + FADE_IN);
+    showView('world', { silent: false });
+    portalFlash.classList.remove('grow');
+    portalFlash.classList.add('shrink');
+    await sleep(FADE_OUT);
 
-    setTimeout(() => {
-      portalFlash.classList.remove('shrink');
-      grillzTrigger.classList.remove('opening', 'sinking');
-    }, DISSOLVE + FADE_IN + FADE_OUT);
+    portalFlash.classList.remove('shrink');
+    grillzTrigger.classList.remove('opening', 'sinking');
+    entering = false;
   }
 
   grillzTrigger.addEventListener('click', enterWorld);
@@ -243,11 +266,22 @@
     setInterval(updateClock, 15000);
   }
 
-  // Once home has finished loading, warm up the next screens, then the remaining sections
-  afterLoad(() => {
+  // As soon as the closed grillz are on screen, fetch what the next step needs (open grillz + world
+  // stickers); the remaining sections follow once the page is idle.
+  const warmNext = () => {
     hydrate(document.getElementById('view-home'));
     hydrate(document.getElementById('view-world'));
-    setTimeout(() => hydrate(), 3000);
+  };
+  const grillzClosed = document.querySelector('.grillz-closed');
+  if (grillzClosed.complete) {
+    warmNext();
+  } else {
+    grillzClosed.addEventListener('load', warmNext, { once: true });
+    grillzClosed.addEventListener('error', warmNext, { once: true });
+  }
+  afterLoad(() => {
+    warmNext();
+    setTimeout(() => hydrate(), 2000);
   });
 
   // Hash-based routing on load / back-forward
