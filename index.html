@@ -4,8 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>HAAD</title>
-<link rel="stylesheet" href="css/style.css?v=11">
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cormorant+Garamond:wght@400;500;600&family=Space+Mono:wght@400;700&family=Syne:wght@600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cormorant+Garamond:wght@400;500;600&family=Space+Mono:wght@400;700&family=Syne:wght@600;700&display=swap"></noscript>
+<script>
+  if (/(invite|recovery|confirmation|email_change)_token=/.test(location.hash)) {
+    var idScript = document.createElement('script');
+    idScript.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+    idScript.onload = function () {
+      window.netlifyIdentity.on('login', function () { window.netlifyIdentity.close(); });
+    };
+    document.head.appendChild(idScript);
+  }
+</script>
 </head>
 <body>
 
@@ -14,7 +27,7 @@
       <a href="#home" class="nav-link" data-nav="home">Home</a>
       <a href="#book" class="nav-link" data-nav="book">Contacto</a>
     </nav>
-    <a class="logo" data-nav="home" href="#home"><img src="assets/logo.png" alt="Haad"></a>
+    <a class="logo" data-nav="home" href="#home"><img src="assets/logo.webp" alt="Haad"></a>
     <nav class="nav-right">
       <a class="icon-link" href="https://www.instagram.com/heyhaad/?hl=es" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/icons/instagram.svg" alt=""></a>
       <a class="icon-link" href="https://www.tiktok.com/@heyhaad" target="_blank" rel="noopener" aria-label="TikTok"><img src="assets/icons/tiktok.svg" alt=""></a>
@@ -30,7 +43,7 @@
     <section id="view-home" class="view active">
       <div class="grillz-wrap" id="grillzTrigger" role="button" tabindex="0" aria-label="Entrar al universo HAAD">
         <img class="grillz-img grillz-closed" src="assets/grillz-closed.webp" alt="HAAD grillz">
-        <img class="grillz-img grillz-open" src="assets/grillz-open.webp" alt="">
+        <img class="grillz-img grillz-open" data-src="assets/grillz-open.webp" alt="">
       </div>
       <div class="scroll-cue">
         <span>Haad files await</span>
@@ -41,37 +54,37 @@
       <div class="world-field" id="worldField">
         <button class="sticker" data-view="section-files"
           style="--x:18%; --y:26%; --mx:22%; --my:12%; --size:150px; --delay:0s; --dur:7.5s; --in-delay:.05s">
-          <img src="assets/stickers/haad-files.webp" alt="">
+          <img data-src="assets/stickers/haad-files.webp" alt="">
           <span>Haad Files</span>
         </button>
 
         <button class="sticker" data-view="section-art"
           style="--x:50%; --y:42%; --mx:50%; --my:34%; --size:170px; --delay:1.1s; --dur:8.5s; --in-delay:.15s">
-          <img src="assets/stickers/art.webp" alt="">
+          <img data-src="assets/stickers/art.webp" alt="">
           <span>Art</span>
         </button>
 
         <button class="sticker" data-view="section-behind"
           style="--x:82%; --y:22%; --mx:78%; --my:14%; --size:150px; --delay:.6s; --dur:9s; --in-delay:.1s">
-          <img src="assets/stickers/behind-the-art.webp" alt="">
+          <img data-src="assets/stickers/behind-the-art.webp" alt="">
           <span>Behind The Art</span>
         </button>
 
         <button class="sticker" data-view="section-diary"
           style="--x:16%; --y:70%; --mx:20%; --my:56%; --size:120px; --delay:1.8s; --dur:7s; --in-delay:.25s">
-          <img src="assets/stickers/diary.webp" alt="">
+          <img data-src="assets/stickers/diary.webp" alt="">
           <span>Diary</span>
         </button>
 
         <button class="sticker" data-view="section-live"
           style="--x:46%; --y:80%; --mx:48%; --my:76%; --size:130px; --delay:1.4s; --dur:8s; --in-delay:.2s">
-          <img src="assets/stickers/live.webp" alt="">
+          <img data-src="assets/stickers/live.webp" alt="">
           <span>Live</span>
         </button>
 
         <button class="sticker" data-view="section-who"
           style="--x:80%; --y:72%; --mx:76%; --my:78%; --size:150px; --delay:.9s; --dur:9.5s; --in-delay:.3s">
-          <img src="assets/stickers/who-is-haad.webp" alt="">
+          <img data-src="assets/stickers/who-is-haad.webp" alt="">
           <span>Who is Haad?</span>
         </button>
       </div>
@@ -147,7 +160,7 @@
       </div>
 
       <iframe id="scPlayer" class="sc-hidden-player" title="HAAD SoundCloud player"
-        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/heyhaad-music/doble-intencion&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false"
+        data-sc-src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/heyhaad-music/doble-intencion&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false"
         frameborder="no" allow="autoplay"></iframe>
     </section>
 
@@ -161,31 +174,31 @@
       <h1 class="section-title">Behind The Art</h1>
       <div class="video-collage">
         <div class="video-tile has-video">
-          <video controls preload="none" poster="assets/videos/behind-the-art/thumbs/vlog-1.jpg">
+          <video controls preload="none" data-poster="assets/videos/behind-the-art/thumbs/vlog-1.jpg">
             <source src="assets/videos/behind-the-art/vlog-1.mp4" type="video/mp4">
           </video>
           <div class="video-caption">Vlog 1 &mdash; Analizando nuestros traumas con autotune @mgl.angel.92</div>
         </div>
         <div class="video-tile has-video">
-          <video controls preload="none" poster="assets/videos/behind-the-art/thumbs/vlog-2.jpg">
+          <video controls preload="none" data-poster="assets/videos/behind-the-art/thumbs/vlog-2.jpg">
             <source src="assets/videos/behind-the-art/vlog-2.mp4" type="video/mp4">
           </video>
           <div class="video-caption">Vlog 2 &mdash; Creando con Haadsuuu en el estudio</div>
         </div>
         <div class="video-tile has-video">
-          <video controls preload="none" poster="assets/videos/behind-the-art/thumbs/vlog-3.jpg">
+          <video controls preload="none" data-poster="assets/videos/behind-the-art/thumbs/vlog-3.jpg">
             <source src="assets/videos/behind-the-art/vlog-3.mp4" type="video/mp4">
           </video>
           <div class="video-caption">Creando con @osmanmusic_ &mdash; &ldquo;Flaca&rdquo;</div>
         </div>
         <div class="video-tile has-video">
-          <video controls preload="none" poster="assets/videos/behind-the-art/thumbs/vlog-4.jpg">
+          <video controls preload="none" data-poster="assets/videos/behind-the-art/thumbs/vlog-4.jpg">
             <source src="assets/videos/behind-the-art/vlog-4.mp4" type="video/mp4">
           </video>
           <div class="video-caption">Vlog 4</div>
         </div>
         <div class="video-tile has-video">
-          <video controls preload="none" poster="assets/videos/behind-the-art/thumbs/vlog-5.jpg">
+          <video controls preload="none" data-poster="assets/videos/behind-the-art/thumbs/vlog-5.jpg">
             <source src="assets/videos/behind-the-art/vlog-5.mp4" type="video/mp4">
           </video>
           <div class="video-caption">Vlog 5 &mdash; P&eacute;galo</div>
@@ -196,8 +209,8 @@
     <section id="section-art" class="view section-view section-view--wall">
       <a href="#world" class="section-back light" data-nav="world">&#8592; Back</a>
       <div class="wall-board wall-board--sparse">
-        <div class="pinned pinned--photo" style="--x:28%; --y:36%; --mx:30%; --my:16%; --r:-6deg; --w:27%;"><div class="tape"></div><div class="photo-slot photo-slot--media"><video src="assets/pages/art/art-video-1.mp4" autoplay muted loop playsinline></video></div></div>
-        <div class="pinned pinned--photo" style="--x:66%; --y:32%; --mx:72%; --my:16%; --r:5deg; --w:25%;"><div class="tape"></div><div class="photo-slot photo-slot--media"><video src="assets/pages/art/art-video-2.mp4" autoplay muted loop playsinline></video></div></div>
+        <div class="pinned pinned--photo" style="--x:28%; --y:36%; --mx:30%; --my:16%; --r:-6deg; --w:27%;"><div class="tape"></div><div class="photo-slot photo-slot--media"><video data-src="assets/pages/art/art-video-1.mp4" data-autoplay muted loop playsinline preload="none"></video></div></div>
+        <div class="pinned pinned--photo" style="--x:66%; --y:32%; --mx:72%; --my:16%; --r:5deg; --w:25%;"><div class="tape"></div><div class="photo-slot photo-slot--media"><video data-src="assets/pages/art/art-video-2.mp4" data-autoplay muted loop playsinline preload="none"></video></div></div>
         <div class="pinned pinned--note" style="--x:47%; --y:62%; --my:38%; --r:-3deg; --w:34%;"><div class="tape"></div><div class="note-slot note-slot--poem">Una l&aacute;grima corre por mi cara, y mi pecho se siente vac&iacute;o, al parecer mi coraz&oacute;n est&aacute; roto, pero no es tu culpa, yo sola me lo romp&iacute; por pensar que podr&iacute;a existir una peque&ntilde;a posibilidad que me eligieras a m&iacute;, pero al final s&eacute; que no es as&iacute;.</div></div>
       </div>
     </section>
@@ -218,7 +231,7 @@
 
           <aside class="diary-col diary-col--left">
             <div class="win diary-brand">
-              <img src="assets/stickers/diary.webp" alt="" class="diary-brand-icon">
+              <img data-src="assets/stickers/diary.webp" alt="" class="diary-brand-icon">
               <div>
                 <div class="diary-brand-title">DIARY&#9733;</div>
                 <div class="diary-brand-sub">haad's personal internet</div>
@@ -240,7 +253,7 @@
             <div class="win">
               <div class="win-title">// now playing</div>
               <div class="now-playing">
-                <img src="assets/pages/diary/polaroid.png" alt="" class="now-playing-thumb">
+                <img data-src="assets/pages/diary/polaroid.png" alt="" class="now-playing-thumb">
                 <div>
                   <div class="now-playing-title">Special Edition</div>
                   <div class="now-playing-sub">Haad</div>
@@ -268,7 +281,7 @@
             <div class="win" id="panel-today">
               <div class="win-title">// today's entry <span class="win-title-date" id="entryDate">MON SEP 15 2025 &middot; 08:47 PM</span></div>
               <div class="diary-entry">
-                <img src="assets/pages/diary/polaroid.jpg" alt="" class="diary-polaroid" id="entryPhoto">
+                <img data-src="assets/pages/diary/polaroid.jpg" alt="" class="diary-polaroid" id="entryPhoto">
                 <div id="entryText">
                   <p>Hoy fue un día pesado pero bonito. Entrené, escribí un poco, escuché ideas viejas y me di cuenta de cuánto he crecido.
                   A veces me siento agotada, pero sigo aquí, y eso ya es un logro. Quiero recordarme que todo esto también es parte del proceso,
@@ -283,20 +296,20 @@
             <div class="win" id="panel-references">
               <div class="win-title">// references</div>
               <div class="tile-grid" id="referencesGrid">
-                <img src="assets/pages/diary/ref-tattoo.jpg" alt="">
-                <img src="assets/pages/diary/ref-eye.jpg" alt="">
-                <img src="assets/pages/diary/ref-rabbit.jpg" alt="">
-                <img src="assets/pages/diary/ref-text.jpg" alt="">
+                <img data-src="assets/pages/diary/ref-tattoo.jpg" alt="">
+                <img data-src="assets/pages/diary/ref-eye.jpg" alt="">
+                <img data-src="assets/pages/diary/ref-rabbit.jpg" alt="">
+                <img data-src="assets/pages/diary/ref-text.jpg" alt="">
               </div>
             </div>
 
             <div class="win" id="panel-random">
               <div class="win-title">// random</div>
               <div class="tile-grid" id="randomGrid">
-                <img src="assets/pages/diary/rand-cat.jpg" alt="">
-                <img src="assets/pages/diary/rand-text.jpg" alt="">
-                <img src="assets/pages/diary/rand-city.jpg" alt="">
-                <img src="assets/pages/diary/rand-lips.jpg" alt="">
+                <img data-src="assets/pages/diary/rand-cat.jpg" alt="">
+                <img data-src="assets/pages/diary/rand-text.jpg" alt="">
+                <img data-src="assets/pages/diary/rand-city.jpg" alt="">
+                <img data-src="assets/pages/diary/rand-lips.jpg" alt="">
               </div>
             </div>
           </div>
@@ -355,7 +368,7 @@
     <section id="section-who" class="view section-view section-view--image">
       <a href="#world" class="section-back" data-nav="world">&#8592; Back</a>
       <div class="image-viewer">
-        <img src="assets/pages/who-is-haad-file.jpg" alt="Who is Haad — dossier">
+        <img data-src="assets/pages/who-is-haad-file.jpg" alt="Who is Haad — dossier">
       </div>
     </section>
 
@@ -372,14 +385,7 @@
 
   <div class="portal-flash" id="portalFlash"></div>
 
-  <script src="https://w.soundcloud.com/player/api.js"></script>
-  <script src="js/main.js"></script>
   <script src="js/diary-loader.js"></script>
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {});
-      window.netlifyIdentity.on("login", () => { window.netlifyIdentity.close(); });
-    }
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

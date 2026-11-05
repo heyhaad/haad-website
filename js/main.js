@@ -12,8 +12,40 @@
     });
   }
 
+  // Only the home view loads up front; other sections load when needed or once the page is idle.
+  function hydrate(root = document) {
+    root.querySelectorAll('[data-src]').forEach(el => {
+      el.src = el.dataset.src;
+      el.removeAttribute('data-src');
+    });
+    root.querySelectorAll('video[data-poster]').forEach(el => {
+      el.poster = el.dataset.poster;
+      el.removeAttribute('data-poster');
+    });
+  }
+
+  function syncAutoplayVideos() {
+    document.querySelectorAll('video[data-autoplay]').forEach(v => {
+      if (v.closest('.view.active')) v.play().catch(() => {});
+      else v.pause();
+    });
+  }
+
+  let initSoundCloud = () => {};
+
+  function afterLoad(fn) {
+    const run = () => (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 2500 }) : setTimeout(fn, 800));
+    document.readyState === 'complete' ? run() : window.addEventListener('load', run, { once: true });
+  }
+
   function showView(viewId, { silent } = {}) {
-    views.forEach(v => v.classList.toggle('active', v.id === (viewId === 'home' ? 'view-home' : viewId === 'world' ? 'view-world' : viewId === 'book' ? 'view-book' : viewId)));
+    const targetId = viewId === 'home' ? 'view-home' : viewId === 'world' ? 'view-world' : viewId === 'book' ? 'view-book' : viewId;
+    views.forEach(v => v.classList.toggle('active', v.id === targetId));
+    const targetView = document.getElementById(targetId);
+    if (targetView) hydrate(targetView);
+    if (targetId === 'section-diary' && window.loadDiary) window.loadDiary();
+    if (targetId === 'section-files') initSoundCloud();
+    syncAutoplayVideos();
     setActiveNav(viewId);
     if (viewId === 'world') worldField.classList.add('enter');
     if (!silent) location.hash = viewId;
@@ -44,6 +76,8 @@
     const FADE_IN = 1100;
     const FADE_OUT = 600;
 
+    hydrate(document.getElementById('view-home'));
+    hydrate(document.getElementById('view-world'));
     grillzTrigger.classList.add('opening');
 
     setTimeout(() => {
@@ -121,6 +155,8 @@
 
     let scWidget = null;
     let scReady = false;
+    let scStarted = false;
+    let pendingFile = null;
     let isPlayingNow = false;
 
     function setPlayingUI(playing) {
@@ -135,20 +171,36 @@
       audioNowTitle.textContent = file.dataset.title;
       if (scReady && file.dataset.sc) {
         scWidget.load(file.dataset.sc, { auto_play: !!autoplay, show_artwork: false });
+      } else {
+        pendingFile = file;
+        initSoundCloud();
       }
     }
 
-    if (window.SC && scIframe) {
-      scWidget = SC.Widget(scIframe);
-      scWidget.bind(SC.Widget.Events.READY, () => {
-        scReady = true;
-      });
-      scWidget.bind(SC.Widget.Events.PLAY, () => setPlayingUI(true));
-      scWidget.bind(SC.Widget.Events.PAUSE, () => setPlayingUI(false));
-      scWidget.bind(SC.Widget.Events.FINISH, () => setPlayingUI(false));
-    }
+    initSoundCloud = () => {
+      if (scStarted || !scIframe) return;
+      scStarted = true;
+      const api = document.createElement('script');
+      api.src = 'https://w.soundcloud.com/player/api.js';
+      api.onload = () => {
+        scIframe.src = scIframe.dataset.scSrc;
+        scWidget = SC.Widget(scIframe);
+        scWidget.bind(SC.Widget.Events.READY, () => {
+          scReady = true;
+          if (pendingFile && pendingFile.dataset.sc) {
+            scWidget.load(pendingFile.dataset.sc, { auto_play: true, show_artwork: false });
+          }
+          pendingFile = null;
+        });
+        scWidget.bind(SC.Widget.Events.PLAY, () => setPlayingUI(true));
+        scWidget.bind(SC.Widget.Events.PAUSE, () => setPlayingUI(false));
+        scWidget.bind(SC.Widget.Events.FINISH, () => setPlayingUI(false));
+      };
+      document.head.appendChild(api);
+    };
 
     function openAudioWindow() {
+      initSoundCloud();
       audioWindow.hidden = false;
       audioTaskbarBtn.hidden = false;
     }
@@ -190,6 +242,13 @@
     updateClock();
     setInterval(updateClock, 15000);
   }
+
+  // Once home has finished loading, warm up the next screens, then the remaining sections
+  afterLoad(() => {
+    hydrate(document.getElementById('view-home'));
+    hydrate(document.getElementById('view-world'));
+    setTimeout(() => hydrate(), 3000);
+  });
 
   // Hash-based routing on load / back-forward
   window.addEventListener('hashchange', () => showView(idFromHash(), { silent: true }));

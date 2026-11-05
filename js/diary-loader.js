@@ -65,5 +65,10 @@
     if (note && data.note) note.textContent = data.note;
   }
 
-  loadDiary();
+  let diaryLoaded = false;
+  window.loadDiary = () => {
+    if (diaryLoaded) return;
+    diaryLoaded = true;
+    loadDiary();
+  };
 })();
